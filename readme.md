@@ -125,8 +125,8 @@ All resumes are collected into a pandas DataFrame, sorted descending by ATS Matc
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YashwanthNarra/resume_matcher.git
-cd resume_matcher
+git clone https://github.com/YashwanthNarra/Resume_Intelligence_system_v1.git
+cd Resume_Intelligence_system_v1
 
 # 2. Create a virtual environment (recommended)
 python -m venv venv
@@ -242,3 +242,6 @@ V2 will upgrade this from a rule-based pipeline to a genuine ML system:
 - **Overlap-aware experience calculation** — deduplicate overlapping job date ranges before summing
 - **Named Entity Recognition** — use spaCy NER to extract candidate name, email, and education degree automatically
 - **OCR support** — integrate pytesseract for scanned PDF resumes
+
+## Author - Yashwanth Narra
+This project is for the academic purpose.

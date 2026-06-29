@@ -94,20 +94,12 @@ if analyze:
         
         exp_score = experience_score(resume_exp,jd_exp)
 
-        # debugging
-        # print(file.name)
-        # print("Resume Experience:", resume_exp)
-        # print("JD Experience:", jd_exp)
-        # print("Experience Score:", exp_score)
-        # print("----------------------")
-
         results.append({
             "Resume": file.name,
             "ATS Match Score": skill_score*0.7+0.3*exp_score,
             "Matched Skills": len(matched_skills),
             "Missing Skills": missing_skills,
 
-            # Detailed data
             "Resume Skills": resume_skills,
             "JD Skills": jd_skills,
             "Matched Skills List": matched_skills,
@@ -115,7 +107,6 @@ if analyze:
             "Experience Score": exp_score,
         })
 
-    # Store results AND the sorted DataFrame in session state
     df = pd.DataFrame(results)
     df = df.sort_values(
         by="ATS Match Score",
@@ -127,7 +118,6 @@ if analyze:
     st.session_state["top_resume"] = df.iloc[0].to_dict()
 
 
-# ── Everything below runs on EVERY re-run, driven by session_state ──────────
 
 if "results" in st.session_state:
 
@@ -137,7 +127,6 @@ if "results" in st.session_state:
 
     st.write("---")
 
-    # Results Heading
     st.markdown(
         "<h2 style='color:orange;'>Results</h2>",
         unsafe_allow_html=True
@@ -151,13 +140,11 @@ if "results" in st.session_state:
         display_df["Resume"]
     )
 
-    # Look up the selected resume's data
     selected_data = next(
         item for item in results
         if item["Resume"] == selected_resume
     )
 
-    # Skill Match Score
     st.markdown(
         f"""
         <h3 style='color:yellow;'>
@@ -174,7 +161,6 @@ if "results" in st.session_state:
         f"with a score of {top_resume['ATS Match Score']}%"
     )
 
-    # Eligibility Message
     if selected_data["ATS Match Score"] >= 80:
         st.success(
             "🎉 Excellent Match! Your profile aligns very strongly with this role. "
